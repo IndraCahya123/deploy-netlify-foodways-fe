@@ -14,7 +14,7 @@ function ProfileRightContent(props) {
             <p style={{ fontFamily: '"Abhaya Libre"', fontWeight: "bold", fontSize: 36 }}>History Transaction</p>
             {
                 props.isLoad ? <p>Load..</p> :
-                    (props.transaction.transactions.length == 0 ?
+                    (props.transaction.transactions.length == 0 || props.transaction.transactions == undefined ?
                         <div className="w-75 d-flex flex-column align-items-center">
                             <img
                                 src={NoData}
