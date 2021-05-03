@@ -21,7 +21,7 @@ function Profile() {
     } = useQuery("getMyTransactionCache", async () => {
         const res = await APIURL.get("/my-transactions");
         return res.data.data
-    });console.log(myTransaction);
+    });
 
     if (state.user?.role === "user") {
         return (

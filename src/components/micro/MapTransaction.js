@@ -13,7 +13,7 @@ function MapTransaction(props) {
     const [loadMap, setLoadMap] = useState(true);
     
     const myAdress = async (lat, long) => {
-        await axios.get(`http://api.positionstack.com/v1/reverse?access_key=cfb5b411b150ee888fe2dcd72d3676a9&query=${lat},${long}`)
+        await axios.get(`https://api.positionstack.com/v1/reverse?access_key=cfb5b411b150ee888fe2dcd72d3676a9&query=${lat},${long}`)
         .then(response => {
             setAddress(response.data.data[0].label);
             setLoadMap(false);

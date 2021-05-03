@@ -68,7 +68,7 @@ function PartnerLogged() {
         dispatch({ type: "AUTH_ERROR" })
         history.push("/")
     }
-    console.log(stateUser);
+
     const {
         data: transactions,
         isFetching: load,
@@ -77,8 +77,6 @@ function PartnerLogged() {
         const res = await APIURL.get(`/transactions/${partnerId}`);
         return res.data.data
     });
-
-    console.log(transactions == undefined);
 
     return (
         <div className="d-flex landing-container w-100" style={{ height: "100vh", paddingTop: 70 }}>
