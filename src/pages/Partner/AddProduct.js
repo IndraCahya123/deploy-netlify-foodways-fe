@@ -41,11 +41,6 @@ function AddProduct() {
         e.target.type === "file" ? e.target.files[0] : e.target.value;
         setForm(tempForm);
     };
-
-    const onSubmit = (e) => {
-        e.preventDefault();
-        swal("Product added", "Your Product Successfully Added", "success").then(() => refetch());
-    };
     
 
     const addProduct = useMutation(async () => {
@@ -63,12 +58,22 @@ function AddProduct() {
 
         await APIURL.post("/product", body, config);
 
+        onSubmit();
+
         setForm({
         productName: "",
         imgFile: null,
         price: 0,
         });
     });
+
+    const onSubmit = () => {
+        if (addProduct.isError) {
+            swal("Failed", "There are some errors while add product", "error");
+        } else {
+            swal("Product added", "Your Product Successfully Added", "success").then(() => refetch());
+        }
+    };
 
     //edit section
     const cancelEdit = () => {
@@ -191,7 +196,6 @@ function AddProduct() {
                                         type="button"
                                         onClick={(e) => {
                                         addProduct.mutate();
-                                        onSubmit(e);
                                         }}
                                         className="btn btn-dark"
                                         style={{ width: "100%" }}
