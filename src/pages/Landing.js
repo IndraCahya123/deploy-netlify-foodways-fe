@@ -17,7 +17,7 @@ function LandingPage() {
     //get user location
     const [userData] = useContext(UserContext);
     const [locationContext, dispatchLocation] = useContext(CurrentLocationContext);
-    console.log(locationContext);
+    
     useEffect(async () => {
         if (userData?.user?.location == "") {
             await navigator.geolocation.getCurrentPosition(pos => {
@@ -40,8 +40,6 @@ function LandingPage() {
                     longitude: locationStringToObj?.longitude
                 }
             });
-            console.log(locationStringToObj);
-            console.log(userData?.user?.location);
         }
     }, []);
 

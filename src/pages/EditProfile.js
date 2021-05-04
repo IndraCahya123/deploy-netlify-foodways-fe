@@ -12,6 +12,8 @@ import { UserContext } from '../contexts/userContext';
 
 import { APIURL } from '../api/integration';
 
+import { LoadingScreen } from '../components/loadingState/LoadingScreen';
+
 import { locToObj } from '../util/locationStringToObj';
 
 import ModalMaps from '../components/Modal/ModalMaps';
@@ -94,8 +96,6 @@ const EditProfile = (props) => {
             });
     }
 
-    console.log(loc);
-
     useEffect(() => {
         getUserData();
     }, []);
@@ -119,15 +119,19 @@ const EditProfile = (props) => {
     const onSubmit = () => {
         editProfile.mutate();
         if (editProfile.isError) {
-            swal("There's error", "error")
+            swal("Error", "Sorry, There's an error while updating your data", "error");
         } else {
-            swal("Profile Updated").then(() => {
-                resetAfterEdit({
-                    type: "IS_EDITED",
-                    payload: formEdit
-                })
-                history.push("/profile");
-            });
+            if (editProfile.isLoading) {
+                <LoadingScreen />
+            } else {
+                swal("Profile Updated").then(() => {
+                    resetAfterEdit({
+                        type: "IS_EDITED",
+                        payload: formEdit
+                    })
+                    history.push("/profile");
+                });
+            }
         }
     }
 

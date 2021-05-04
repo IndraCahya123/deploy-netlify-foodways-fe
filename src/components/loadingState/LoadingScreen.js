@@ -1,4 +1,6 @@
-function MapLoading() {
+import { Spinner } from 'react-bootstrap';
+
+function LoadingScreen() {
     return (
         <div style={{
             width: "100%",
@@ -10,9 +12,14 @@ function MapLoading() {
             zIndex: "99",
             color: "white"
         }}>
-            <h1>Loading...</h1>
+            <div>
+                <Spinner
+                    color= "#ffc770"
+                />
+                <span>Loading...</span>
+            </div>
         </div>
     )
 }
 
-export default MapLoading
+export default LoadingScreen;
