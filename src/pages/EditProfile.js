@@ -12,7 +12,7 @@ import { UserContext } from '../contexts/userContext';
 
 import { APIURL } from '../api/integration';
 
-import { LoadingScreen } from '../components/loadingState/LoadingScreen';
+import LoadingScreen  from '../components/loadingState/LoadingScreen';
 
 import { locToObj } from '../util/locationStringToObj';
 
